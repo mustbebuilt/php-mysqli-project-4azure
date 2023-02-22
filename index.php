@@ -1,6 +1,4 @@
 <?php
-print_r($_ENV);
-exit;
 require_once("includes/config.php");
 // query to get the latest 6 films
 $queryFilms = "SELECT * FROM Films ORDER BY releaseDate DESC LIMIT 0,4";
