@@ -1,3 +1,9 @@
+<?php
+require_once("includes/config.php");
+// query to get all films
+$queryFilms = "SELECT * FROM Films";
+$resultFilms = $mysqli->query( $queryFilms );
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,29 +19,38 @@
     />
   </head>
   <body>
-<?php
-include("includes/header.php");
-?>
+    <?php include("includes/header.php")?>
     <div class="mainContainer">
-		      <main>
+		<main>
               <div class="banner">
                 <h2>Catalogue</h2>
               </div>
               <section class="twoColumn">
-                <div>
-                <!-- Film Listing Here -->
+                <div class="listing">
+                  <table>
+                    <tr>
+                      <th>Film</th>
+                      <th>Certificate</th>
+                      <th>Price</th>
+                    </tr>
+                      <?php
+                     while ($obj = $resultFilms -> fetch_object()) {
+                          echo "<tr>";
+                          echo "<td>{$obj->filmTitle}</td>";
+                          echo "<td>{$obj->filmCertificate}</td>";
+                          echo "<td>&pound; {$obj->filmPrice}</td>";
+                          echo "</tr>";
+                    }
+                    ?>
+                  </table>
                 </div>
-		            <div class="sideBar">
-                <h3>Featured Film</h3>
-                <div> <img src="images/babadook.jpg" alt="Babadook"/> </div>
-                <p>Info Here</p>
-                </div>
+		<?php
+	    include("includes/sidebar.php");
+		?>
               </section>
         </main>
     </div>
-<?php
-// add Footer
-?>
+    <?php include("includes/footer.php")?>
     <script src="js/main.js"></script>
   </body>
 </html>
