@@ -7,7 +7,7 @@ define("DB_PASSWORD", $_ENV["DB_PASSWORD"]);
 define("DB_NAME", $_ENV["DB_DATABASE"]);
  
 /* Attempt to connect to MySQL database */
-$mysqli = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME, 3306, MYSQLI_CLIENT_SSL);
+$mysqli = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
  
 // Check connection
 if($mysqli === false){
