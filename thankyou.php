@@ -1,3 +1,6 @@
+<?php
+require_once( "includes/config.php" );
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,25 +16,36 @@
     />
 </head>
 <body>
-<?php
-include("includes/header.php");
-?>
+<?php include("includes/header.php")?>
 <div class="mainContainer">
   <main>
     <div class="banner">
       <h2>Thank You</h2>
     </div>
     <section class="twoColumn">
-
-<div class="sideBar">
-        <h3>Featured Film</h3>
-        <div> <img src="images/babadook.jpg" alt="Babadook" /> </div>
-        <p>Info Here</p>
+      <div>
+		  <table>
+        <?php
+		 foreach($_POST as $key => $value){
+			 echo "<tr>";
+			 echo "<td class=\"uc\">";
+			 echo $key;
+			 echo "</td>";
+			 echo "<td>";
+			 echo $value;
+			 echo "</td>";
+			 echo "<tr>";
+		 }
+		 ?>
+		</table>
       </div>
+		<?php
+	    include("includes/sidebar.php");
+		?>
     </section>
   </main>
 </div>
-     <?php include("includes/footer.php")?>
+<?php include("includes/footer.php")?>
 <script src="js/main.js"></script>
 </body>
 </html>

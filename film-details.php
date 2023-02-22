@@ -1,11 +1,13 @@
 <?php
-require_once("includes/config.php");
+require_once( "includes/config.php" );
+//check for querystring
+$getFilmID = $_GET[ 'filmID' ] ?? null;
 // query to get film by filmID
-$getFilmID = $_GET["filmID"];
 $stmt = $mysqli->prepare( "SELECT * FROM Films WHERE filmID = ?" );
 $stmt->bind_param( 'i', $getFilmID );
 $stmt->execute();
 $result = $stmt->get_result();
+//
 $obj = $result->fetch_object();
 ?>
 <!DOCTYPE html>
@@ -14,7 +16,7 @@ $obj = $result->fetch_object();
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Film Title Here</title>
+<title><?php echo $obj->filmTitle; ?></title>
 <link rel="stylesheet" href="css/mobile.css" />
 <link
       rel="stylesheet"
@@ -23,16 +25,16 @@ $obj = $result->fetch_object();
     />
 </head>
 <body>
-<?php
-include("includes/header.php");
-?>
+<?php include("includes/header.php")?>
 <div class="mainContainer">
   <main>
     <div class="banner">
-      <h2>Film Title Here</h2>
+      <?php
+      echo "<h2>{$obj->filmTitle}</h2>";
+      ?>
     </div>
     <section class="twoColumn">
-    <div>
+      <div>
         <?php
         echo "<div class=\"filmDetails\">";
         echo "<div>";
@@ -40,19 +42,18 @@ include("includes/header.php");
         echo "</div>";
         echo "<div>";
         echo "<p>{$obj->filmDescription}</p>";
+        echo "<p>{$obj->filmCertificate}</p>";
         echo "</div>";
         echo "</div>";
         ?>
       </div>
-<div class="sideBar">
-        <h3>Featured Film</h3>
-        <div> <img src="images/babadook.jpg" alt="Babadook" /> </div>
-        <p>Info Here</p>
-      </div>
+		<?php
+	    include("includes/sidebar.php");
+		?>
     </section>
   </main>
 </div>
-     <?php include("includes/footer.php")?>
+<?php include("includes/footer.php")?>
 <script src="js/main.js"></script>
 </body>
 </html>
