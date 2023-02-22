@@ -1,7 +1,5 @@
 <?php
 require_once( "includes/config.php" );
-print_r($mysqli);
-exit;
 //check for search value
 $searchQuery = $_GET[ 'q' ] ?? null;
 if ( is_null( $searchQuery ) || empty( $searchQuery ) ) {
