@@ -44,9 +44,7 @@ include("includes/header.php");
     </section>
   </main>
 </div>
-<?php
-// add Footer
-?>
+     <?php include("includes/footer.php")?>
 <script src="js/main.js"></script>
 </body>
 </html>
